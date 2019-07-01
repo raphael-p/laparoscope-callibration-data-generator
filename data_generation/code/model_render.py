@@ -1,13 +1,11 @@
-import vtk
 from imageio import imread
 from vtk.util import colors
+import numpy as np
+import vtk
 from sksurgeryvtk.models.vtk_surface_model import VTKSurfaceModel
 import sksurgeryvtk.camera.vtk_camera_model as VTKCameraModel
-import numpy as np
-from sksurgeryvtk.camera.vtk_camera_model import compute_projection_matrix
-from PySide2.QtWidgets import QApplication
-import vtk
 from sksurgeryvtk.widgets.vtk_overlay_window import VTKOverlayWindow
+from PySide2.QtWidgets import QApplication
 
 
 def rotate_model(target):
@@ -66,8 +64,16 @@ def shift_camera(centre):
     return extrinsic
 
 
-if __name__ == "__main__":
-    app = QApplication([])
+def render(background_image='../data/operating_theatre/op_th_1.jpg', screenshot_filename='../data/images/gen_img_test.png',
+        width=1920, height=1080, fx=1740.660258, fy=1744.276691, cx=913.206542, cy=449.961440,
+        os='mac', show_widget=True):
+
+    try:
+        app = QApplication([])
+    except RuntimeError:
+        app = QApplication.instance()
+        if app is None:
+            app = QApplication([])
 
     err_out = vtk.vtkFileOutputWindow()
     err_out.SetFileName('output/vtk.err.txt')
@@ -89,12 +95,16 @@ if __name__ == "__main__":
     model.set_model_transform(extrinsic)
 
     # load background image
-    jpeg_reader = imread('../data/operating_theatre/op_th_1.jpg')
+    jpeg_reader = imread(background_image)
 
     # generate widget
     widget = VTKOverlayWindow(offscreen=False)
-    # widget.resize(1920, 1080) <-- LINUX
-    widget.resize(960, 540) # <-- MAC
+    if os == 'linux':
+        widget.resize(width, height)
+    elif os == 'mac':
+        widget.resize(width/2, height/2)
+    else:
+        raise ValueError("'"+str(os)+"' is an invalid OS, choose either 'mac' or 'linux'")
     widget.interactor = None
     widget.SetInteractorStyle(widget.interactor)
     widget.add_vtk_actor(model.actor)
@@ -105,9 +115,7 @@ if __name__ == "__main__":
 
     # generate and set intrinsic matrix
     cam_matrix = camera.GetModelViewTransformMatrix()
-    projection_matrix = VTKCameraModel.compute_projection_matrix(1920, 1080,  # w, y
-                                                                 1740.660258, 1744.276691,  # fx, fy,
-                                                                 913.206542, 449.961440,  # cx, cy,
+    projection_matrix = VTKCameraModel.compute_projection_matrix(width, height, fx, fy, cx, cy,
                                                                  0.1, 1000,  # near, far
                                                                  1  # aspect ratio
                                                                  )
@@ -121,9 +129,16 @@ if __name__ == "__main__":
     widget.set_camera_pose(cam_extrinsic)
 
     # save image
-    screenshot_filename = '../data/images/gen_img_test.png'
     widget.save_scene_to_file(screenshot_filename)
 
-    app.exec_()
+    if show_widget:
+        app.exec_()
+    return
+
+
+if __name__ == "__main__":
+    render()
+
+
 
 
