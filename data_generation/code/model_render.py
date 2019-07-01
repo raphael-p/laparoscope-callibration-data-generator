@@ -10,8 +10,8 @@ from PySide2.QtWidgets import QApplication
 
 def rotate_model(target):
     """
-    void function, produces rotation matrix for random, normally distributed, small angles
-    :param target: rotation matrix
+    void function, updates rotation matrix to perform random, normally distributed, small angle rotation in 3D
+    :param target: rotation matrix to be updated
     """
     rot_dev = np.pi/7
     x_rot = np.random.normal(0, rot_dev)
@@ -46,6 +46,11 @@ def rotate_model(target):
 
 
 def shift_camera(centre):
+    """
+    translates camera in 3D
+    :param centre: numpy array containing 3D coordinates of camera position when image is centred
+    :return: translated extrinsic matrix of camera
+    """
     xtrans_std_dev = 20
     ytrans_std_dev = 5
     ztrans_std_dev = 20
