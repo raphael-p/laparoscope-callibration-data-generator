@@ -5,7 +5,10 @@ import vtk
 from sksurgeryvtk.models.vtk_surface_model import VTKSurfaceModel
 import sksurgeryvtk.camera.vtk_camera_model as VTKCameraModel
 from sksurgeryvtk.widgets.vtk_overlay_window import VTKOverlayWindow
+from vtk.util.numpy_support import vtk_to_numpy
+import cv2
 from PySide2.QtWidgets import QApplication
+import six
 
 
 def rotate_model(target):
@@ -80,15 +83,6 @@ def render(background_image='../data/operating_theatre/op_th_1.jpg', screenshot_
         if app is None:
             app = QApplication([])
 
-    err_out = vtk.vtkFileOutputWindow()
-    err_out.SetFileName('output/vtk.err.txt')
-    vtk_std_err = vtk.vtkOutputWindow()
-    vtk_std_err.SetInstance(err_out)
-
-    factory = vtk.vtkGraphicsFactory()
-    factory.SetOffScreenOnlyMode(False)
-    factory.SetUseMesaClasses(False)
-
     # create foreground image (checkerboard)
     input_file = '../data/grid_manual.ply'
     model = VTKSurfaceModel(input_file, colors.white)
@@ -97,52 +91,54 @@ def render(background_image='../data/operating_theatre/op_th_1.jpg', screenshot_
     # rotate model
     extrinsic = model.get_model_transform()
     rotate_model(extrinsic)
-    model.set_model_transform(extrinsic)
+    #model.set_model_transform(extrinsic)
 
     # load background image
     jpeg_reader = imread(background_image)
 
-    # generate widget
+    # generate widget and disable interactor
     widget = VTKOverlayWindow(offscreen=False)
-    if os == 'linux':
-        widget.resize(width, height)
-    elif os == 'mac':
-        widget.resize(width/2, height/2)
-    else:
-        raise ValueError("'"+str(os)+"' is an invalid OS, choose either 'mac' or 'linux'")
-    widget.interactor = None
-    widget.SetInteractorStyle(widget.interactor)
     widget.add_vtk_actor(model.actor)
     widget.set_video_image(jpeg_reader)
-    widget.show()
-
-    camera = widget.get_foreground_camera()
+    widget.interactor = None
+    widget.SetInteractorStyle(widget.interactor)
 
     # generate and set intrinsic matrix
-    cam_matrix = camera.GetModelViewTransformMatrix()
-    projection_matrix = VTKCameraModel.compute_projection_matrix(width, height, fx, fy, cx, cy,
-                                                                 0.1, 1000,  # near, far
-                                                                 1  # aspect ratio
-                                                                 )
-    VTKCameraModel.set_projection_matrix(camera, projection_matrix)
+    intrinsic = np.array([[fx, 0, cx],
+                          [0, fy, cy],
+                          [0, 0, 1]])
+    widget.set_camera_matrix(intrinsic)
 
     # translate camera position
+    camera = widget.get_foreground_camera()
+    cam_matrix = camera.GetModelViewTransformMatrix()
     cam_centre = np.array([-cam_matrix.GetElement(0, 3),
                            -cam_matrix.GetElement(1, 3),
                            cam_matrix.GetElement(2, 3)])
     cam_extrinsic = shift_camera(cam_centre)
-    widget.set_camera_pose(cam_extrinsic)
+    #widget.set_camera_pose(cam_extrinsic)
+
+    # resize widget
+    if os == 'linux':
+        widget.resize(width, height)
+    elif os == 'mac':
+        widget.resize(width//2, height//2)
+    else:
+        raise ValueError("'"+str(os)+"' is an invalid OS, choose either 'mac' or 'linux'")
 
     # save image
     widget.save_scene_to_file(screenshot_filename)
 
     if show_widget:
+        widget.show()
         app.exec_()
     return
 
 
 if __name__ == "__main__":
-    render()
+    #render(screenshot_filename='../data/images/gen_img_test_default.png')
+    render(cx=962, cy=540, screenshot_filename='../data/images/gen_img_test_changefocus.png')
+    #render()
 
 
 
