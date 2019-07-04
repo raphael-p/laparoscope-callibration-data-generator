@@ -10,7 +10,7 @@ if __name__ == "__main__":
     background_file = backgrounds[0]
 
     # set iteration parameters
-    n_images = 30
+    n_images = 100
     change_background_frequency = 2
     change_intrinsic_frequency = 5
 
@@ -34,6 +34,6 @@ if __name__ == "__main__":
             c_y = np.random.normal(449.961440, 45)
 
         # generate image
-        filename = '../data/images/batch_1/gen_img_1_'+str(iter_count)+'.png'
+        filename = '../data/generated_images/batch_1/gen_img_1_'+str(iter_count)+'.png'
         render(fx=f_x, fy=f_y, cx=c_x, cy=c_y,
                background_image=background_file, screenshot_filename=filename, show_widget=False, os="mac")
