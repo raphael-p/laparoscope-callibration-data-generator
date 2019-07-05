@@ -88,14 +88,12 @@ def render(background_image='../data/operating_theatre/1.or-efficiency-orepp-par
     rotate_model(extrinsic)
     model.set_model_transform(extrinsic)
 
-    # load background image
-    #jpeg_reader = imread(background_image)
+    # load background image & swap RGB channel order
     jpeg_reader = np.asarray(Image.open(background_image))
     channel = np.swapaxes(jpeg_reader, 0, 2)
     bck_img = np.asarray([channel[2], channel[1], channel[0]])
     bck_img = np.swapaxes(bck_img, 0, 2)
     bck_img = np.asarray(bck_img, order='C')
-
 
     # generate widget and disable interactor
     widget = VTKOverlayWindow(offscreen=False)

@@ -11,8 +11,8 @@ if __name__ == "__main__":
 
     # set iteration parameters
     n_images = 100
-    change_background_frequency = 2
-    change_intrinsic_frequency = 5
+    change_background_frequency = 3
+    change_intrinsic_frequency = 10
 
     # initialise intrinsic parameters
     f_x = 1740.660258
