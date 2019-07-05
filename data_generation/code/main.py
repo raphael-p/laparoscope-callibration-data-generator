@@ -2,16 +2,17 @@ from model_render import render
 from os import walk
 import numpy as np
 from tqdm import tqdm
+from datetime import date
 
-if __name__ == "__main__":
+
+def run(n_images=30, system='mac',
+        background_folder='../data/operating_theatre/', save_folder='../data/generated_images/batch_1/'):
     # retrieve background files
-    background_folder = '../data/operating_theatre/'
     (_, _, backgrounds) = next(walk(background_folder))
     background_file = backgrounds[0]
 
     # set iteration parameters
-    n_images = 100
-    change_background_frequency = 3
+    change_background_frequency = 1
     change_intrinsic_frequency = 10
 
     # initialise intrinsic parameters
@@ -34,6 +35,11 @@ if __name__ == "__main__":
             c_y = np.random.normal(449.961440, 45)
 
         # generate image
-        filename = '../data/generated_images/batch_1/gen_img_1_'+str(iter_count)+'.png'
+        date_string = str(date.today())
+        filename = save_folder+date_string+'_gen_'+str(iter_count)+'.png'
         render(fx=f_x, fy=f_y, cx=c_x, cy=c_y,
-               background_image_location=background_file, save_file=filename, show_widget=False, os="mac")
+               background_image_location=background_file, save_file=filename, show_widget=False, os=system)
+
+
+if __name__ == "__main__":
+    run()
