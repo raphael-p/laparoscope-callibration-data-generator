@@ -1,4 +1,3 @@
-from PIL import Image
 from vtk.util import colors
 import numpy as np
 import vtk
@@ -71,7 +70,6 @@ def render(background_image_location='../data/operating_theatre/1.or-efficiency-
            save_file='../data/generated_images/gen_img_test.png',
            width=1920, height=1080, fx=1740.660258, fy=1744.276691, cx=913.206542, cy=449.961440,
            os='mac', show_widget=True):
-
     try:
         app = QApplication([])
     except RuntimeError:
@@ -94,10 +92,24 @@ def render(background_image_location='../data/operating_theatre/1.or-efficiency-
 
     # generate widget and disable interactor
     widget = VTKOverlayWindow(offscreen=False)
-    widget.add_vtk_actor(model.actor)
-    widget.set_video_image(background_image)
     widget.interactor = None
     widget.SetInteractorStyle(widget.interactor)
+    widget.add_vtk_actor(model.actor)
+    try:
+        widget.set_video_image(background_image)
+    except TypeError:
+        pass
+
+    if show_widget:
+        widget.show()
+
+    # resize widget
+    if os == 'linux':
+        widget.resize(width, height)
+    elif os == 'mac':
+        widget.resize(width//2, height//2)
+    else:
+        raise ValueError("'"+str(os)+"' is an invalid OS, choose either 'mac' or 'linux'")
 
     # generate and set intrinsic matrix
     intrinsic = np.array([[fx, 0, cx],
@@ -114,20 +126,18 @@ def render(background_image_location='../data/operating_theatre/1.or-efficiency-
     cam_extrinsic = shift_camera(cam_centre)
     widget.set_camera_pose(cam_extrinsic)
 
-    # resize widget
-    if os == 'linux':
-        widget.resize(width, height)
-    elif os == 'mac':
-        pass
-        widget.resize(width//2, height//2)
-    else:
-        raise ValueError("'"+str(os)+"' is an invalid OS, choose either 'mac' or 'linux'")
-
     # save image
     widget.save_scene_to_file(save_file)
 
+    # test: check widget size
+    render_window = widget.GetRenderWindow()
+    dimensions = render_window.GetSize()
+    window_width = dimensions[0]
+    window_height = dimensions[1]
+    if width != window_width or height != window_height:
+        raise AssertionError("Incorrect window dimensions: try changing os argument")
+
     if show_widget:
-        widget.show()
         app.exec_()
     return
 
