@@ -5,6 +5,7 @@ import vtk
 from sksurgeryvtk.models.vtk_surface_model import VTKSurfaceModel
 from sksurgeryvtk.widgets.vtk_overlay_window import VTKOverlayWindow
 from PySide2.QtWidgets import QApplication
+from cv2 import imread
 
 
 def rotate_model(target):
@@ -66,8 +67,8 @@ def shift_camera(centre):
     return extrinsic
 
 
-def render(background_image='../data/operating_theatre/1.or-efficiency-orepp-partnership-program.jpg',
-           screenshot_filename='../data/generated_images/gen_img_test.png',
+def render(background_image_location='../data/operating_theatre/1.or-efficiency-orepp-partnership-program.jpg',
+           save_file='../data/generated_images/gen_img_test.png',
            width=1920, height=1080, fx=1740.660258, fy=1744.276691, cx=913.206542, cy=449.961440,
            os='mac', show_widget=True):
 
@@ -88,17 +89,13 @@ def render(background_image='../data/operating_theatre/1.or-efficiency-orepp-par
     rotate_model(extrinsic)
     model.set_model_transform(extrinsic)
 
-    # load background image & swap RGB channel order
-    jpeg_reader = np.asarray(Image.open(background_image))
-    channel = np.swapaxes(jpeg_reader, 0, 2)
-    bck_img = np.asarray([channel[2], channel[1], channel[0]])
-    bck_img = np.swapaxes(bck_img, 0, 2)
-    bck_img = np.asarray(bck_img, order='C')
+    # load background image
+    background_image = imread(background_image_location)
 
     # generate widget and disable interactor
     widget = VTKOverlayWindow(offscreen=False)
     widget.add_vtk_actor(model.actor)
-    widget.set_video_image(bck_img)
+    widget.set_video_image(background_image)
     widget.interactor = None
     widget.SetInteractorStyle(widget.interactor)
 
@@ -127,7 +124,7 @@ def render(background_image='../data/operating_theatre/1.or-efficiency-orepp-par
         raise ValueError("'"+str(os)+"' is an invalid OS, choose either 'mac' or 'linux'")
 
     # save image
-    widget.save_scene_to_file(screenshot_filename)
+    widget.save_scene_to_file(save_file)
 
     if show_widget:
         widget.show()
@@ -136,8 +133,6 @@ def render(background_image='../data/operating_theatre/1.or-efficiency-orepp-par
 
 
 if __name__ == "__main__":
-    #render(screenshot_filename='../data/images/gen_img_test_default.png')
-    #render(cx=962, cy=540, screenshot_filename='../data/generated_images/gen_img_test_changefocus.png')
     render()
 
 

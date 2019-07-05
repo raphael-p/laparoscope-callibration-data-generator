@@ -36,4 +36,4 @@ if __name__ == "__main__":
         # generate image
         filename = '../data/generated_images/batch_1/gen_img_1_'+str(iter_count)+'.png'
         render(fx=f_x, fy=f_y, cx=c_x, cy=c_y,
-               background_image=background_file, screenshot_filename=filename, show_widget=False, os="mac")
+               background_image_location=background_file, save_file=filename, show_widget=False, os="mac")
