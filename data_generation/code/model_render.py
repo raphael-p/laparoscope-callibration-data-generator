@@ -99,9 +99,7 @@ def render(background_image_location='../data/operating_theatre/1.or-efficiency-
         widget.set_video_image(background_image)
     except TypeError:
         pass
-
-    if show_widget:
-        widget.show()
+    widget.show()
 
     # resize widget
     if os == 'linux':
@@ -139,6 +137,8 @@ def render(background_image_location='../data/operating_theatre/1.or-efficiency-
 
     if show_widget:
         app.exec_()
+    else:
+        widget.close()
     return
 
 
