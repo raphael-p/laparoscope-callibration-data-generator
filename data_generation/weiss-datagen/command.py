@@ -4,17 +4,22 @@ from main import run
 
 
 def process():
-    parser = ArgumentParser(description="Generate callibration images")
+    parser = ArgumentParser(description="Generate calibration images")
     parser.add_argument('--number', '-n', type=int, default=30,
-                        help="number of images to generate")
+                        help="number of images to generate, "
+                             "default: 30")
     parser.add_argument('--os', '-o', type=str, default='mac',
-                        help="operating system of the computer, either mac or linux (Windows users may use linux)")
+                        help="operating system of the computer: mac or linux, "
+                             "default: mac")
     parser.add_argument('--background', '-b', type=str, default='../data/operating_theatre/',
-                        help="relative address of folder where background images are located")
+                        help="relative address of folder where background images are located, "
+                             "default: ../data/operating_theatre/")
     parser.add_argument('--savefolder', '-s', type=str, default='../data/generated_images/batch_1/',
-                        help="relative address of folder where generated images are stored")
+                        help="relative address of folder where generated images are stored, "
+                             "default: ../data/generated_images/batch_1/")
     parser.add_argument('--compress', '-c', action='store_true',
-                        help="compress images - recommended")
+                        help="boolean, compresses images - this is very slow but greatly reduces storage, "
+                             "default: False")
     arguments = parser.parse_args()
 
     if not os.path.isdir(arguments.savefolder):

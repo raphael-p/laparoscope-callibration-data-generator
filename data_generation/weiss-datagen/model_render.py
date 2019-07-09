@@ -71,6 +71,21 @@ def render(background_image_location='../data/operating_theatre/1.or-efficiency-
            save_file='../data/generated_images/gen_img_test.png',
            width=1920, height=1080, fx=1740.660258, fy=1744.276691, cx=913.206542, cy=449.961440,
            os='mac', show_widget=True, compress=False):
+    """
+    uses vtk to render and save an image of a calibration board on a background in a random pose and position
+    :param background_image_location: STR relative address of folder where background images are stored
+    :param save_file: STR name and location of savefil
+    :param width: INT width of image
+    :param height: INT height of image
+    :param fx: FLOAT focal length along x, in pixels
+    :param fy: FLOAT focal length along y, in pixels
+    :param cx: FLOAT x-coordinate of optical center or principal point, in pixels
+    :param cy: FLOAT y-coordinate of optical center or principal point, in pixels
+    :param os: STR operating system of machine, 'mac' or 'linux'
+    :param show_widget: BOOL shows generated image
+    :param compress: BOOl compresses save file
+    :return: void
+    """
     try:
         app = QApplication([])
     except RuntimeError:
