@@ -2,11 +2,11 @@ from model_render import render
 from os import walk
 import numpy as np
 from tqdm import tqdm
-from datetime import date
 
 
 def run(n_images=30, system='mac',
-        background_folder='../data/operating_theatre/', save_folder='../data/generated_images/batch_1/'):
+        background_folder='../data/operating_theatre/', save_folder='../data/generated_images/batch_0/',
+        compression=False):
     # retrieve background files
     (_, _, backgrounds) = next(walk(background_folder))
     background_file = backgrounds[0]
@@ -35,10 +35,11 @@ def run(n_images=30, system='mac',
             c_y = np.random.normal(449.961440, 45)
 
         # generate image
-        date_string = str(date.today())
-        filename = save_folder+date_string+'_gen_'+str(iter_count)+'.png'
+        dir_name = list(filter(None, save_folder.split('/')))[-1]
+        filename = save_folder+'genim_'+dir_name+'_'+str(iter_count+1)+'.png'
         render(fx=f_x, fy=f_y, cx=c_x, cy=c_y,
-               background_image_location=background_file, save_file=filename, show_widget=False, os=system)
+               background_image_location=background_file, save_file=filename,
+               show_widget=False, os=system, compress=compression)
 
 
 if __name__ == "__main__":

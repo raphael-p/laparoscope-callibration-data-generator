@@ -4,7 +4,8 @@ import vtk
 from sksurgeryvtk.models.vtk_surface_model import VTKSurfaceModel
 from sksurgeryvtk.widgets.vtk_overlay_window import VTKOverlayWindow
 from PySide2.QtWidgets import QApplication
-from cv2 import imread
+from vtk.util.numpy_support import vtk_to_numpy
+from cv2 import imread, flip, imwrite, cvtColor, COLOR_RGB2BGR, IMWRITE_PNG_COMPRESSION
 
 
 def rotate_model(target):
@@ -69,7 +70,7 @@ def shift_camera(centre):
 def render(background_image_location='../data/operating_theatre/1.or-efficiency-orepp-partnership-program.jpg',
            save_file='../data/generated_images/gen_img_test.png',
            width=1920, height=1080, fx=1740.660258, fy=1744.276691, cx=913.206542, cy=449.961440,
-           os='mac', show_widget=True):
+           os='mac', show_widget=True, compress=False):
     try:
         app = QApplication([])
     except RuntimeError:
@@ -98,7 +99,7 @@ def render(background_image_location='../data/operating_theatre/1.or-efficiency-
     try:
         widget.set_video_image(background_image)
     except TypeError:
-        pass
+        return
     widget.show()
 
     # resize widget
@@ -124,9 +125,6 @@ def render(background_image_location='../data/operating_theatre/1.or-efficiency-
     cam_extrinsic = shift_camera(cam_centre)
     widget.set_camera_pose(cam_extrinsic)
 
-    # save image
-    widget.save_scene_to_file(save_file)
-
     # test: check widget size
     render_window = widget.GetRenderWindow()
     dimensions = render_window.GetSize()
@@ -134,6 +132,29 @@ def render(background_image_location='../data/operating_theatre/1.or-efficiency-
     window_height = dimensions[1]
     if width != window_width or height != window_height:
         raise AssertionError("Incorrect window dimensions: try changing os argument")
+
+    # save image
+    # widget.save_scene_to_file(save_file)
+    widget.vtk_win_to_img_filter = vtk.vtkWindowToImageFilter()
+    widget.vtk_win_to_img_filter.SetInput(widget.GetRenderWindow())
+    widget.vtk_win_to_img_filter.SetInputBufferTypeToRGB()
+    widget.vtk_win_to_img_filter.Update()
+
+    widget.vtk_image = widget.vtk_win_to_img_filter.GetOutput()
+    width, height, _ = widget.vtk_image.GetDimensions()
+    widget.vtk_array = widget.vtk_image.GetPointData().GetScalars()
+    number_of_components = widget.vtk_array.GetNumberOfComponents()
+
+    np_array = vtk_to_numpy(widget.vtk_array).reshape(height,
+                                                      width,
+                                                      number_of_components)
+    widget.output = flip(np_array, flipCode=0)
+    widget.convert_scene_to_numpy_array()
+    widget.output = cvtColor(widget.output, COLOR_RGB2BGR)
+    imwrite(save_file, widget.output)
+    if compress:
+        import os
+        os.system('./pngquant --ext .png -f --quality=75 -- '+str(save_file))
 
     if show_widget:
         app.exec_()
@@ -143,7 +164,7 @@ def render(background_image_location='../data/operating_theatre/1.or-efficiency-
 
 
 if __name__ == "__main__":
-    render()
+    render(compress=True)
 
 
 

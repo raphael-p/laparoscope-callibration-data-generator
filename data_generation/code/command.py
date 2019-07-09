@@ -13,6 +13,8 @@ def process():
                         help="relative address of folder where background images are located")
     parser.add_argument('--savefolder', '-s', type=str, default='../data/generated_images/batch_1/',
                         help="relative address of folder where generated images are stored")
+    parser.add_argument('--compress', '-c', action='store_true',
+                        help="compress images - recommended")
     arguments = parser.parse_args()
 
     if not os.path.isdir(arguments.savefolder):
@@ -25,10 +27,7 @@ def process():
                         + "See help: -h or --help")
 
     run(n_images=arguments.number, system=arguments.os, background_folder=arguments.background,
-        save_folder=arguments.savefolder)
-
-
-
+        save_folder=arguments.savefolder, compression=arguments.compress)
 
 
 if __name__ == "__main__":
