@@ -17,8 +17,7 @@ You should set your parameters before running.
 directory.
 
 ### Tips:
-- It is highly recommended to compress images (see command line options), 
-however this is a very expensive operation.
+- It is highly recommended to compress images (see command line options).
 - The bash script uses the command line program, so it us useful to get familiar with it
 in order to get familiar with that first.
 

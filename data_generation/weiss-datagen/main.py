@@ -5,7 +5,7 @@ from tqdm import tqdm
 import csv
 
 
-def run(n_images=30, system='mac',
+def run(n_images=20, system='mac',
         background_folder='../data/operating_theatre/', save_folder='../data/generated_images/batch_0/',
         label_folder='../data/generated_images/labels/',
         compression=True, im_width=1920, im_height=1080):
@@ -36,10 +36,14 @@ def run(n_images=30, system='mac',
     c_y = 449.961440
     intrinsic_matrix = [f_x, f_y, c_x, c_y]
 
+    header = ["focal x", "focal y", "principal x", "principal y",
+              "rot matrix 0,0", "rot matrix 0,1", "rot matrix 0,2",
+              "rot matrix 1,0", "rot matrix 1,1", "rot matrix 1,2",
+              "rot matrix 2,0", "rot matrix 2,1", "rot matrix 2,2"]
     dir_name = list(filter(None, save_folder.split('/')))[-1]
-
     with open(label_folder+dir_name+'.csv', 'wt') as f:
         csv_writer = csv.writer(f)
+        csv_writer.writerow(header)
         for iter_count in tqdm(range(n_images)):
             # select background
             if iter_count % change_background_frequency == 0:
