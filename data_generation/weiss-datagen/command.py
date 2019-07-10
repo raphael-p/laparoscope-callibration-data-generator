@@ -17,6 +17,9 @@ def process():
     parser.add_argument('--savefolder', '-s', type=str, default='../data/generated_images/batch_1/',
                         help="relative address of folder where generated images are stored, "
                              "default: ../data/generated_images/batch_1/")
+    parser.add_argument('--labelfolder', '-l', type=str, default='../data/generated_images/labels/',
+                        help="relative address of folder where labels are stored, "
+                             "default: ../data/generated_images/labels/")
     parser.add_argument('--compress', '-c', action='store_true',
                         help="boolean, compresses images - this is very slow but greatly reduces storage, "
                              "default: False")
@@ -33,9 +36,13 @@ def process():
         raise TypeError("Background images directory '" + arguments.background
                         + "' is not a valid directory. Please define a valid location. "
                         + "See help: -h or --help")
+    if not os.path.isdir(arguments.labelfolder):
+        raise TypeError("Labels directory '" + arguments.labelfolder
+                        + "' is not a valid directory. Please define a valid location. "
+                        + "See help: -h or --help")
 
     run(n_images=arguments.number, system=arguments.os, background_folder=arguments.background,
-        save_folder=arguments.savefolder, compression=arguments.compress,
+        save_folder=arguments.savefolder, label_folder=arguments.labelfolder, compression=arguments.compress,
         im_width=arguments.dim[0], im_height=arguments.dim[1])
 
 

@@ -12,6 +12,7 @@ def rotate_model(target):
     """
     void function, updates rotation matrix to perform random, normally distributed, small angle rotation in 3D
     :param target: rotation matrix to be updated
+    :return: rotational part of extrinsic matrix of model (calibration board)
     """
     rot_dev = np.pi/7
     x_rot = np.random.normal(0, rot_dev)
@@ -167,15 +168,21 @@ def render(background_image_location='../data/operating_theatre/1.or-efficiency-
     widget.convert_scene_to_numpy_array()
     widget.output = cvtColor(widget.output, COLOR_RGB2BGR)
     imwrite(save_file, widget.output)
+
+    mod_ext = model.get_model_transform()
+    model_extrinsic = [mod_ext.GetElement(0,0), mod_ext.GetElement(0,1), mod_ext.GetElement(0,2),
+                       mod_ext.GetElement(1,0), mod_ext.GetElement(1,1), mod_ext.GetElement(1,2),
+                       mod_ext.GetElement(2,0), mod_ext.GetElement(2,1), mod_ext.GetElement(2,2)]
+
     if compress:
         import os
-        os.system('./pngquant --ext .png -f --quality=75 -- '+str(save_file))
+        os.system('./pngquant --ext .png -f --quality=75 --speed 11 -- '+str(save_file))
 
     if show_widget:
         app.exec_()
     else:
         widget.close()
-    return
+    return model_extrinsic
 
 
 if __name__ == "__main__":
