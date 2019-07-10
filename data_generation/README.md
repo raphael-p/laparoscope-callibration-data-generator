@@ -3,8 +3,6 @@ This code generates training images for camera calibration. By default: a checke
 on a calibration board in a random angle and position, 
 with an operating theatre image in the background. 
 
-Image size = 1920x1080
-
 ### Dependencies:
    -   scikit-surgeryvtk
     
