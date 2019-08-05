@@ -176,7 +176,7 @@ def render(background_image_location='../data/operating_theatre/1.or-efficiency-
 
     if compress:
         import os
-        os.system('./pngquant --ext .png -f --quality=60 --speed 8 -- '+str(save_file))
+        os.system('./pngquant --ext .png -f --quality=70 --speed 11 -- '+str(save_file))
 
     if show_widget:
         app.exec_()

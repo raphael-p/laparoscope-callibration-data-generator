@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 env_name=MScProject
-images_per_batch=1000
+images_per_batch=500
 start_batch_num=1
-end_batch_num=30
-save_folder=../data/generated_images
+end_batch_num=60
+save_folder=../../../../../../../Downloads/generated_images
 
 label_loc=${save_folder}/labels/
 mkdir -p ${label_loc}

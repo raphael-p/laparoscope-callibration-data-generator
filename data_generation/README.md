@@ -4,7 +4,7 @@ on a calibration board in a random angle and position,
 with an operating theatre image in the background. 
 
 ### Dependencies:
-   -   scikit-surgeryvtk
+See `REQUIREMENTS.txt` for a list of dependencies.
     
 ### Instructions: 
 - To generate a single image, run model_render.py
