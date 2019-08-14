@@ -48,7 +48,7 @@ def move_model(target):
     target.SetElement(0, 3, x_pos)
     target.SetElement(1, 3, y_pos)
     target.SetElement(2, 3, z_pos)
-    return [x_pos, y_pos, z_pos]
+    return [x_shift, y_shift, z_shift]
 
 
 def render(background_image_location='../data/operating_theatre/1.or-efficiency-orepp-partnership-program.jpg',
