@@ -2,8 +2,8 @@
 
 env_name=MScProject
 images_per_batch=400
-start_batch_num=2
-end_batch_num=45
+start_batch_num=1
+end_batch_num=60
 save_folder=../../../../../../../Downloads/data
 img_folder=${save_folder}/generated_images/
 label_loc=${save_folder}/labels/

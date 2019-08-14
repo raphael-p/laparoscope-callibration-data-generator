@@ -42,13 +42,13 @@ def move_model(target):
     target.SetElement(2, 2, np.cos(theta) * np.cos(phi))
 
     # translate
-    x_centre = target.GetElement(0, 3)
-    y_centre = target.GetElement(1, 3)
-    z_centre = target.GetElement(2, 3)
-    target.SetElement(0, 3, x_centre + x_shift)
-    target.SetElement(1, 3, y_centre + y_shift)
-    target.SetElement(2, 3, z_centre + z_shift)
-    return [x_shift, y_shift, z_shift]
+    x_pos = target.GetElement(0, 3) + x_shift
+    y_pos = target.GetElement(1, 3) + y_shift
+    z_pos = target.GetElement(2, 3) + z_shift
+    target.SetElement(0, 3, x_pos)
+    target.SetElement(1, 3, y_pos)
+    target.SetElement(2, 3, z_pos)
+    return [x_pos, y_pos, z_pos]
 
 
 def render(background_image_location='../data/operating_theatre/1.or-efficiency-orepp-partnership-program.jpg',

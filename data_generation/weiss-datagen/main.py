@@ -35,18 +35,12 @@ def run(n_images=20, system='mac',
     c_x = 913.206542
     c_y = 449.961440
     intrinsic_matrix = [f_x, f_y, c_x, c_y]
-    #intrinsic_matrix = [f_x, f_y]
 
     header = ["name", "focal x", "focal y", "principal x", "principal y",
               "rot matrix 0,0", "rot matrix 0,1", "rot matrix 0,2",
               "rot matrix 1,0", "rot matrix 1,1", "rot matrix 1,2",
               "rot matrix 2,0", "rot matrix 2,1", "rot matrix 2,2",
               "x_translation", "y_translation", "z_translation"]
-    #header = ["name", "focal x", "focal y",
-    #          "rot matrix 0,0", "rot matrix 0,1", "rot matrix 0,2",
-    #          "rot matrix 1,0", "rot matrix 1,1", "rot matrix 1,2",
-    #          "rot matrix 2,0", "rot matrix 2,1", "rot matrix 2,2",
-    #          "x_translation", "y_translation", "z_translation"]
     dir_name = list(filter(None, save_folder.split('/')))[-1]
     with open(label_folder+dir_name+'.csv', 'wt') as f:
         csv_writer = csv.writer(f)
@@ -64,7 +58,6 @@ def run(n_images=20, system='mac',
                 c_x = np.random.normal(913.206542, 200)
                 c_y = np.random.normal(449.961440, 100)
                 intrinsic_matrix = [f_x, f_y, c_x, c_y]
-                #intrinsic_matrix = [f_x, f_y]
 
             # generate image
             img_name = 'genim_'+dir_name+'_'+str(iter_count+1)+'.png'
