@@ -7,7 +7,7 @@ import csv
 
 def run(n_images=20, system='mac',
         background_folder='../data/operating_theatre/', save_folder='../data/generated_images/batch_0/',
-        label_folder='../data/generated_images/labels/',
+        label_folder='../data/labels/',
         compression=True, im_width=1920, im_height=1080):
     """
     runs model_render.py multiple times, used to generate a batch of images
@@ -35,11 +35,18 @@ def run(n_images=20, system='mac',
     c_x = 913.206542
     c_y = 449.961440
     intrinsic_matrix = [f_x, f_y, c_x, c_y]
+    #intrinsic_matrix = [f_x, f_y]
 
-    header = ["focal x", "focal y", "principal x", "principal y",
+    header = ["name", "focal x", "focal y", "principal x", "principal y",
               "rot matrix 0,0", "rot matrix 0,1", "rot matrix 0,2",
               "rot matrix 1,0", "rot matrix 1,1", "rot matrix 1,2",
-              "rot matrix 2,0", "rot matrix 2,1", "rot matrix 2,2"]
+              "rot matrix 2,0", "rot matrix 2,1", "rot matrix 2,2",
+              "x_translation", "y_translation", "z_translation"]
+    #header = ["name", "focal x", "focal y",
+    #          "rot matrix 0,0", "rot matrix 0,1", "rot matrix 0,2",
+    #          "rot matrix 1,0", "rot matrix 1,1", "rot matrix 1,2",
+    #          "rot matrix 2,0", "rot matrix 2,1", "rot matrix 2,2",
+    #          "x_translation", "y_translation", "z_translation"]
     dir_name = list(filter(None, save_folder.split('/')))[-1]
     with open(label_folder+dir_name+'.csv', 'wt') as f:
         csv_writer = csv.writer(f)
@@ -52,14 +59,16 @@ def run(n_images=20, system='mac',
 
             # randomise intrinsic parameters
             if iter_count % change_intrinsic_frequency == 0:
-                f_x = np.random.normal(1740.660258, 174)
-                f_y = np.random.normal(1744.276691, 174)
-                c_x = np.random.normal(913.206542, 91)
-                c_y = np.random.normal(449.961440, 45)
+                f_x = np.random.normal(1740.660258, 300)
+                f_y = np.random.normal(1744.276691, 300)
+                c_x = np.random.normal(913.206542, 200)
+                c_y = np.random.normal(449.961440, 100)
                 intrinsic_matrix = [f_x, f_y, c_x, c_y]
+                #intrinsic_matrix = [f_x, f_y]
 
             # generate image
-            filename = save_folder+'genim_'+dir_name+'_'+str(iter_count+1)+'.png'
+            img_name = 'genim_'+dir_name+'_'+str(iter_count+1)+'.png'
+            filename = save_folder+img_name
             model_extrinsic = render(fx=f_x, fy=f_y, cx=c_x, cy=c_y,
                                      background_image_location=background_file, save_file=filename,
                                      show_widget=False, os=system, compress=compression,
@@ -68,7 +77,7 @@ def run(n_images=20, system='mac',
                 continue
 
             # save labels
-            csv_writer.writerow(intrinsic_matrix + model_extrinsic)
+            csv_writer.writerow([img_name] + intrinsic_matrix + model_extrinsic)
 
 
 if __name__ == "__main__":

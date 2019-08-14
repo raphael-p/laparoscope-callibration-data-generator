@@ -1,4 +1,4 @@
-# data generation
+# Data Generation
 This code generates training images for camera calibration. 
 By default: a checkerboard pattern
 on a calibration board in a random angle and position, 

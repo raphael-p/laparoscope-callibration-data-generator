@@ -13,14 +13,29 @@ def main():
     planeSource.SetPoint1(42, 0.0, 0.0)
     planeSource.SetPoint2(0.0, 33, 0.0)
     planeSource.SetNormal(0.0, 0.0, 1.0)
-    #planeSource.SetCenter(0.0, 0.0, 0.0)
     planeSource.Update()
 
     plane = planeSource.GetOutputPort()
 
     # Save plane to file
     plyWriter = vtk.vtkPLYWriter()
-    plyWriter.SetFileName("../data/grid_manual")
+    plyWriter.SetFileName("../data/grid_board")
+    plyWriter.SetInputConnection(plane)
+    plyWriter.Write()
+
+    # Create a background plane
+    planeSource = vtk.vtkPlaneSource()
+    planeSource.SetOrigin(0.0, 0.0, 0.0)
+    planeSource.SetPoint1(288, 0.0, 0.0)
+    planeSource.SetPoint2(0.0, 162, 0.0)
+    planeSource.SetNormal(0.0, 0.0, 1.0)
+    planeSource.Update()
+
+    plane = planeSource.GetOutputPort()
+
+    # Save plane to file
+    plyWriter = vtk.vtkPLYWriter()
+    plyWriter.SetFileName("../data/grid_background")
     plyWriter.SetInputConnection(plane)
     plyWriter.Write()
 

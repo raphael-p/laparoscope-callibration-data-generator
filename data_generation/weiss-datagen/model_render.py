@@ -7,65 +7,48 @@ from PySide2.QtWidgets import QApplication
 from vtk.util.numpy_support import vtk_to_numpy
 from cv2 import imread, flip, imwrite, cvtColor, COLOR_RGB2BGR, IMWRITE_PNG_COMPRESSION
 
+from os import walk
 
-def rotate_model(target):
+
+def move_model(target):
     """
     void function, updates rotation matrix to perform random, normally distributed, small angle rotation in 3D
     :param target: rotation matrix to be updated
     :return: rotational part of extrinsic matrix of model (calibration board)
     """
-    rot_dev = np.pi/7
-    x_rot = np.random.normal(0, rot_dev)
-    y_rot = np.random.normal(0, rot_dev)
-    z_rot = np.random.normal(0, rot_dev)
+    # random rotation angles
+    rot_dev = np.pi/20
+    theta = np.random.normal(0, rot_dev)
+    phi = np.random.normal(0, rot_dev)
+    psi = np.random.normal(0, rot_dev)
 
-    Z = vtk.vtkMatrix4x4()
-    Z.DeepCopy(target)
-    Z.SetElement(0, 0, np.cos(z_rot))
-    Z.SetElement(0, 1, -np.sin(z_rot))
-    Z.SetElement(1, 0, np.sin(z_rot))
-    Z.SetElement(1, 1, np.cos(z_rot))
+    # random translation distances
+    x_dev = 15
+    y_dev = 5
+    z_dev = 10
+    x_shift = np.random.normal(0, x_dev)
+    y_shift = np.random.normal(0, y_dev)
+    z_shift = np.random.normal(0, z_dev)
 
-    Y = vtk.vtkMatrix4x4()
-    Y.DeepCopy(target)
-    Y.SetElement(0, 0, np.cos(y_rot))
-    Y.SetElement(0, 2, np.sin(y_rot))
-    Y.SetElement(2, 0, -np.sin(y_rot))
-    Y.SetElement(2, 2, np.cos(y_rot))
+    # rotate
+    target.SetElement(0, 0, np.cos(psi) * np.cos(theta))
+    target.SetElement(0, 1, np.sin(psi) * np.cos(theta))
+    target.SetElement(0, 2, -np.sin(theta))
+    target.SetElement(1, 0, -np.sin(psi) * np.cos(phi) + np.cos(psi) * np.sin(theta) * np.cos(phi))
+    target.SetElement(1, 1, np.cos(psi) * np.cos(phi) + np.sin(psi) * np.sin(theta) * np.sin(phi))
+    target.SetElement(1, 2, np.cos(theta) * np.sin(phi))
+    target.SetElement(2, 0, np.sin(psi) * np.sin(phi) + np.cos(psi) * np.sin(theta) * np.cos(phi))
+    target.SetElement(2, 1, -np.cos(psi) * np.sin(phi) + np.sin(psi) * np.sin(theta) * np.cos(phi))
+    target.SetElement(2, 2, np.cos(theta) * np.cos(phi))
 
-    X = vtk.vtkMatrix4x4()
-    X.DeepCopy(target)
-    X.SetElement(2, 2, np.cos(x_rot))
-    X.SetElement(1, 2, -np.sin(x_rot))
-    X.SetElement(2, 1, np.sin(x_rot))
-    X.SetElement(1, 1, np.cos(x_rot))
-
-    YZ = vtk.vtkMatrix4x4()
-    vtk.vtkMatrix4x4.Multiply4x4(Y, Z, YZ)
-    vtk.vtkMatrix4x4.Multiply4x4(X, YZ, target)
-    return
-
-
-def shift_camera(centre):
-    """
-    translates camera in 3D
-    :param centre: numpy array containing 3D coordinates of camera position when image is centred
-    :return: translated extrinsic matrix of camera
-    """
-    xtrans_std_dev = 15
-    ytrans_std_dev = 5
-    ztrans_std_dev = 20
-
-    x_shift = np.random.normal(0, xtrans_std_dev)
-    y_shift = np.random.normal(0, ytrans_std_dev)
-    z_shift = np.random.normal(0, ztrans_std_dev)
-
-    x_pos, y_pos, z_pos = centre
-    extrinsic = np.array([[1, 0, 0, x_pos + x_shift],
-                          [0, 1, 0, y_pos + y_shift],
-                          [0, 0, 1, z_pos + z_shift],
-                          [0, 0, 0, 1]])
-    return extrinsic
+    # translate
+    x_centre = target.GetElement(0, 3)
+    y_centre = target.GetElement(1, 3)
+    z_centre = target.GetElement(2, 3)
+    target.SetElement(0, 3, x_centre + x_shift)
+    target.SetElement(1, 3, y_centre + y_shift)
+    target.SetElement(2, 3, z_centre + z_shift)
+    return [x_shift, y_shift, z_shift]
 
 
 def render(background_image_location='../data/operating_theatre/1.or-efficiency-orepp-partnership-program.jpg',
@@ -95,36 +78,25 @@ def render(background_image_location='../data/operating_theatre/1.or-efficiency-
             app = QApplication([])
 
     # create foreground image (checkerboard)
-    input_file = '../data/grid_manual.ply'
+    input_file = '../data/grid_board.ply'
     model = VTKSurfaceModel(input_file, colors.white)
     model.set_texture('../data/checkerboard-3mm.png')
 
-    # rotate model
-    extrinsic = model.get_model_transform()
-    rotate_model(extrinsic)
-    model.set_model_transform(extrinsic)
-
-    # load background image
-    background_image = imread(background_image_location)
+    # create background image (OR)
+    try:
+        input_file = '../data/grid_background.ply'
+        model_bckg = VTKSurfaceModel(input_file, colors.white)
+        model_bckg.set_texture(background_image_location)
+    except ValueError:
+        return
 
     # generate widget and disable interactor
     widget = VTKOverlayWindow(offscreen=False)
     widget.interactor = None
     widget.SetInteractorStyle(widget.interactor)
-    widget.add_vtk_actor(model.actor)
-    try:
-        widget.set_video_image(background_image)
-    except TypeError:
-        return
-    widget.show()
-
-    # resize widget
-    if os == 'linux':
-        widget.resize(width, height)
-    elif os == 'mac':
-        widget.resize(width//2, height//2)
-    else:
-        raise ValueError("'"+str(os)+"' is an invalid OS, choose either 'mac' or 'linux'")
+    widget.add_vtk_actor(model_bckg.actor, layer=1)
+    widget.add_vtk_actor(model.actor, layer=1)
+    background_image = np.zeros((1080, 1920, 3))
 
     # generate and set intrinsic matrix
     intrinsic = np.array([[fx, 0, cx],
@@ -132,14 +104,36 @@ def render(background_image_location='../data/operating_theatre/1.or-efficiency-
                           [0, 0, 1]])
     widget.set_camera_matrix(intrinsic)
 
-    # translate camera position
-    camera = widget.get_foreground_camera()
-    cam_matrix = camera.GetModelViewTransformMatrix()
-    cam_centre = np.array([-cam_matrix.GetElement(0, 3),
-                           -cam_matrix.GetElement(1, 3),
-                           cam_matrix.GetElement(2, 3)])
-    cam_extrinsic = shift_camera(cam_centre)
-    widget.set_camera_pose(cam_extrinsic)
+    # scale
+    cam = widget.get_foreground_camera()
+    transform = vtk.vtkTransform()
+    transform.Scale(4, 4, 1)
+    cam.SetModelTransformMatrix(transform.GetMatrix())
+
+    # center background
+    extrinsic_bckg = model_bckg.get_model_transform()
+    extrinsic_bckg.SetElement(0, 3, -105)
+    extrinsic_bckg.SetElement(1, 3, -69)
+    extrinsic_bckg.SetElement(2, 3, -30)
+
+    # center board
+    extrinsic_board = model.get_model_transform()
+    extrinsic_board.SetElement(0, 3, 19)
+    extrinsic_board.SetElement(1, 3, -4.3)
+
+    # rotate and translate
+    extrinsic = model.get_model_transform()
+    translation = move_model(extrinsic)
+
+    widget.set_video_image(background_image)
+    widget.show()
+    # resize widget
+    if os == 'linux':
+        widget.resize(width, height)
+    elif os == 'mac':
+        widget.resize(width//2, height//2)
+    else:
+        raise ValueError("'"+str(os)+"' is an invalid OS, choose either 'mac' or 'linux'")
 
     # test: check widget size
     render_window = widget.GetRenderWindow()
@@ -150,7 +144,6 @@ def render(background_image_location='../data/operating_theatre/1.or-efficiency-
         raise AssertionError("Incorrect window dimensions: try changing os argument")
 
     # save image
-    # widget.save_scene_to_file(save_file)
     widget.vtk_win_to_img_filter = vtk.vtkWindowToImageFilter()
     widget.vtk_win_to_img_filter.SetInput(widget.GetRenderWindow())
     widget.vtk_win_to_img_filter.SetInputBufferTypeToRGB()
@@ -170,9 +163,10 @@ def render(background_image_location='../data/operating_theatre/1.or-efficiency-
     imwrite(save_file, widget.output)
 
     mod_ext = model.get_model_transform()
-    model_extrinsic = [mod_ext.GetElement(0,0), mod_ext.GetElement(0,1), mod_ext.GetElement(0,2),
-                       mod_ext.GetElement(1,0), mod_ext.GetElement(1,1), mod_ext.GetElement(1,2),
-                       mod_ext.GetElement(2,0), mod_ext.GetElement(2,1), mod_ext.GetElement(2,2)]
+    model_extrinsic = [mod_ext.GetElement(0, 0), mod_ext.GetElement(0, 1), mod_ext.GetElement(0, 2),
+                       mod_ext.GetElement(1, 0), mod_ext.GetElement(1, 1), mod_ext.GetElement(1, 2),
+                       mod_ext.GetElement(2, 0), mod_ext.GetElement(2, 1), mod_ext.GetElement(2, 2),
+                       translation[0], translation[1], translation[2]]
 
     if compress:
         import os
@@ -186,8 +180,11 @@ def render(background_image_location='../data/operating_theatre/1.or-efficiency-
 
 
 if __name__ == "__main__":
-    render(compress=True)
-
+    # retrieve background files
+    background_folder = '../data/operating_theatre/'
+    (_, _, backgrounds) = next(walk(background_folder))
+    for idx in range(len(backgrounds)):
+        render(compress=True, background_image_location=background_folder+backgrounds[idx])
 
 
 
