@@ -1,12 +1,13 @@
 from model_render import render
 from os import walk
+import os
 import numpy as np
 from tqdm import tqdm
 import csv
 
 
-def run(n_images=20, system='mac',
-        background_folder='../data/operating_theatre/', save_folder='../data/generated_images/batch_0/',
+def run(n_images=200, system='mac',
+        background_folder='../data/operating_theatre/', save_folder='../data/generated_images/batch_pred/',
         label_folder='../data/labels/',
         compression=True, im_width=1920, im_height=1080):
     """
@@ -21,6 +22,10 @@ def run(n_images=20, system='mac',
     :param im_height: INT height of image
     :return: void
     """
+    # create save folder
+    if not os.path.exists(save_folder):
+        os.makedirs(save_folder)
+
     # retrieve background files
     (_, _, backgrounds) = next(walk(background_folder))
     background_file = backgrounds[0]
@@ -41,6 +46,11 @@ def run(n_images=20, system='mac',
               "rot matrix 1,0", "rot matrix 1,1", "rot matrix 1,2",
               "rot matrix 2,0", "rot matrix 2,1", "rot matrix 2,2",
               "x_translation", "y_translation", "z_translation"]
+    #header = ["name", "focal x", "focal y",
+    #          "rot matrix 0,0", "rot matrix 0,1", "rot matrix 0,2",
+    #          "rot matrix 1,0", "rot matrix 1,1", "rot matrix 1,2",
+    #          "rot matrix 2,0", "rot matrix 2,1", "rot matrix 2,2",
+    #          "x_translation", "y_translation", "z_translation"]
     dir_name = list(filter(None, save_folder.split('/')))[-1]
     with open(label_folder+dir_name+'.csv', 'wt') as f:
         csv_writer = csv.writer(f)
@@ -58,10 +68,12 @@ def run(n_images=20, system='mac',
                 c_x = np.random.normal(913.206542, 200)
                 c_y = np.random.normal(449.961440, 100)
                 intrinsic_matrix = [f_x, f_y, c_x, c_y]
+                #intrinsic_matrix = [f_x, f_y]
+
 
             # generate image
             img_name = 'genim_'+dir_name+'_'+str(iter_count+1)+'.png'
-            filename = save_folder+img_name
+            filename = os.path.join(save_folder, img_name)
             model_extrinsic = render(fx=f_x, fy=f_y, cx=c_x, cy=c_y,
                                      background_image_location=background_file, save_file=filename,
                                      show_widget=False, os=system, compress=compression,

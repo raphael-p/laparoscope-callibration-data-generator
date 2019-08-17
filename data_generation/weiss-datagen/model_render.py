@@ -23,8 +23,8 @@ def move_model(target):
     psi = np.random.normal(0, rot_dev)
 
     # random translation distances
-    x_dev = 15
-    y_dev = 5
+    x_dev = 20
+    y_dev = 11.2
     z_dev = 10
     x_shift = np.random.normal(0, x_dev)
     y_shift = np.random.normal(0, y_dev)
@@ -127,6 +127,7 @@ def render(background_image_location='../data/operating_theatre/1.or-efficiency-
 
     widget.set_video_image(background_image)
     widget.show()
+
     # resize widget
     if os == 'linux':
         widget.resize(width, height)
@@ -167,7 +168,6 @@ def render(background_image_location='../data/operating_theatre/1.or-efficiency-
                        mod_ext.GetElement(1, 0), mod_ext.GetElement(1, 1), mod_ext.GetElement(1, 2),
                        mod_ext.GetElement(2, 0), mod_ext.GetElement(2, 1), mod_ext.GetElement(2, 2),
                        translation[0], translation[1], translation[2]]
-
     if compress:
         import os
         os.system('./pngquant --ext .png -f --quality=70 --speed 11 -- '+str(save_file))
