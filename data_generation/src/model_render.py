@@ -123,6 +123,7 @@ def render(background_image_location='../data/operating_theatre/1.or-efficiency-
 
     # rotate and translate
     extrinsic = model.get_model_transform()
+    print(type(extrinsic))
     translation = move_model(extrinsic)
 
     widget.set_video_image(background_image)
