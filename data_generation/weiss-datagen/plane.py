@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 import vtk
 
 
 def main():
+    """
+    Main method, creates and saves a vtk plane for both the calibration board, and the background image.
+    """
     colors = vtk.vtkNamedColors()
 
     # Create a plane
@@ -66,6 +68,7 @@ def main():
     # Render and interact
     renderWindow.Render()
     renderWindowInteractor.Start()
+    return
 
 
 if __name__ == '__main__':

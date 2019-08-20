@@ -26,6 +26,9 @@ def process():
     parser.add_argument('--dim', '-d', type=int, nargs=2, metavar=('WIDTH', 'HEIGHT'), default=[1920, 1080],
                         help="dimensions of the generated images, "
                              "default: 1920x1080")
+    parser.add_argument('--principal', '-p', action='store_true',
+                        help="data includes variable principal point"
+                             "default: False")
     arguments = parser.parse_args()
 
     if not os.path.isdir(arguments.savefolder):
@@ -43,9 +46,8 @@ def process():
 
     run(n_images=arguments.number, system=arguments.os, background_folder=arguments.background,
         save_folder=arguments.savefolder, label_folder=arguments.labelfolder, compression=arguments.compress,
-        im_width=arguments.dim[0], im_height=arguments.dim[1])
+        im_width=arguments.dim[0], im_height=arguments.dim[1], has_principal=arguments.principal)
 
 
 if __name__ == "__main__":
     process()
-

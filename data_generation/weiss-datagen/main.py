@@ -6,7 +6,7 @@ from tqdm import tqdm
 import csv
 
 
-def run(n_images=200, system='mac',
+def run(n_images=200, system='mac', has_principal=False,
         background_folder='../data/operating_theatre/', save_folder='../data/generated_images/batch_pred/',
         label_folder='../data/labels/',
         compression=True, im_width=1920, im_height=1080):
@@ -14,13 +14,13 @@ def run(n_images=200, system='mac',
     runs model_render.py multiple times, used to generate a batch of images
     :param n_images: INT number of images to generate
     :param system: STR operating system of machine
+    :param has_principal: BOOL option to include variable principal point
     :param background_folder: STR relative address of folder where background images are stored
     :param save_folder: STR relative address of folder to save generated images in
     :param label_folder: STR relative address of folder to save labels in
     :param compression: BOOL compresses image using pngquant
     :param im_width: INT width of image
     :param im_height: INT height of image
-    :return: void
     """
     # create save folder
     if not os.path.exists(save_folder):
@@ -39,18 +39,19 @@ def run(n_images=200, system='mac',
     f_y = 1744.276691
     c_x = 913.206542
     c_y = 449.961440
-    intrinsic_matrix = [f_x, f_y, c_x, c_y]
 
-    header = ["name", "focal x", "focal y", "principal x", "principal y",
-              "rot matrix 0,0", "rot matrix 0,1", "rot matrix 0,2",
-              "rot matrix 1,0", "rot matrix 1,1", "rot matrix 1,2",
-              "rot matrix 2,0", "rot matrix 2,1", "rot matrix 2,2",
-              "x_translation", "y_translation", "z_translation"]
-    #header = ["name", "focal x", "focal y",
-    #          "rot matrix 0,0", "rot matrix 0,1", "rot matrix 0,2",
-    #          "rot matrix 1,0", "rot matrix 1,1", "rot matrix 1,2",
-    #          "rot matrix 2,0", "rot matrix 2,1", "rot matrix 2,2",
-    #          "x_translation", "y_translation", "z_translation"]
+    if has_principal:
+        header = ["name", "focal x", "focal y", "principal x", "principal y",
+                  "rot matrix 0,0", "rot matrix 0,1", "rot matrix 0,2",
+                  "rot matrix 1,0", "rot matrix 1,1", "rot matrix 1,2",
+                  "rot matrix 2,0", "rot matrix 2,1", "rot matrix 2,2",
+                  "x_translation", "y_translation", "z_translation"]
+    else:
+        header = ["name", "focal x", "focal y",
+                  "rot matrix 0,0", "rot matrix 0,1", "rot matrix 0,2",
+                  "rot matrix 1,0", "rot matrix 1,1", "rot matrix 1,2",
+                  "rot matrix 2,0", "rot matrix 2,1", "rot matrix 2,2",
+                  "x_translation", "y_translation", "z_translation"]
     dir_name = list(filter(None, save_folder.split('/')))[-1]
     with open(label_folder+dir_name+'.csv', 'wt') as f:
         csv_writer = csv.writer(f)
@@ -65,11 +66,12 @@ def run(n_images=200, system='mac',
             if iter_count % change_intrinsic_frequency == 0:
                 f_x = np.random.normal(1740.660258, 300)
                 f_y = np.random.normal(1744.276691, 300)
-                c_x = np.random.normal(913.206542, 200)
-                c_y = np.random.normal(449.961440, 100)
-                intrinsic_matrix = [f_x, f_y, c_x, c_y]
-                #intrinsic_matrix = [f_x, f_y]
-
+                if has_principal:
+                    c_x = np.random.normal(913.206542, 200)
+                    c_y = np.random.normal(449.961440, 100)
+                    intrinsic_matrix = [f_x, f_y, c_x, c_y]
+                else:
+                    intrinsic_matrix = [f_x, f_y]
 
             # generate image
             img_name = 'genim_'+dir_name+'_'+str(iter_count+1)+'.png'
@@ -83,6 +85,7 @@ def run(n_images=200, system='mac',
 
             # save labels
             csv_writer.writerow([img_name] + intrinsic_matrix + model_extrinsic)
+    return
 
 
 if __name__ == "__main__":

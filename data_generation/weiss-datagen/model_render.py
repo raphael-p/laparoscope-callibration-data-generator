@@ -5,14 +5,14 @@ from sksurgeryvtk.models.vtk_surface_model import VTKSurfaceModel
 from sksurgeryvtk.widgets.vtk_overlay_window import VTKOverlayWindow
 from PySide2.QtWidgets import QApplication
 from vtk.util.numpy_support import vtk_to_numpy
-from cv2 import imread, flip, imwrite, cvtColor, COLOR_RGB2BGR, IMWRITE_PNG_COMPRESSION
+from cv2 import flip, imwrite, cvtColor, COLOR_RGB2BGR
 
 from os import walk
 
 
 def move_model(target):
     """
-    void function, updates rotation matrix to perform random, normally distributed, small angle rotation in 3D
+    updates rotation matrix to perform random, normally distributed, small angle rotation in 3D
     :param target: rotation matrix to be updated
     :return: rotational part of extrinsic matrix of model (calibration board)
     """
@@ -68,7 +68,7 @@ def render(background_image_location='../data/operating_theatre/1.or-efficiency-
     :param os: STR operating system of machine, 'mac' or 'linux'
     :param show_widget: BOOL shows generated image
     :param compress: BOOl compresses save file
-    :return: void
+    :return: numpy array, extrinsic matrix of the calibration object
     """
     try:
         app = QApplication([])
@@ -144,17 +144,15 @@ def render(background_image_location='../data/operating_theatre/1.or-efficiency-
     if width != window_width or height != window_height:
         raise AssertionError("Incorrect window dimensions: try changing os argument")
 
-    # save image
+    # save image: retrieve and convert to numpy array
     widget.vtk_win_to_img_filter = vtk.vtkWindowToImageFilter()
     widget.vtk_win_to_img_filter.SetInput(widget.GetRenderWindow())
     widget.vtk_win_to_img_filter.SetInputBufferTypeToRGB()
     widget.vtk_win_to_img_filter.Update()
-
     widget.vtk_image = widget.vtk_win_to_img_filter.GetOutput()
     width, height, _ = widget.vtk_image.GetDimensions()
     widget.vtk_array = widget.vtk_image.GetPointData().GetScalars()
     number_of_components = widget.vtk_array.GetNumberOfComponents()
-
     np_array = vtk_to_numpy(widget.vtk_array).reshape(height,
                                                       width,
                                                       number_of_components)
@@ -163,6 +161,7 @@ def render(background_image_location='../data/operating_theatre/1.or-efficiency-
     widget.output = cvtColor(widget.output, COLOR_RGB2BGR)
     imwrite(save_file, widget.output)
 
+    # assemble the calibration object's extrinsic matrix
     mod_ext = model.get_model_transform()
     model_extrinsic = [mod_ext.GetElement(0, 0), mod_ext.GetElement(0, 1), mod_ext.GetElement(0, 2),
                        mod_ext.GetElement(1, 0), mod_ext.GetElement(1, 1), mod_ext.GetElement(1, 2),
@@ -185,6 +184,3 @@ if __name__ == "__main__":
     (_, _, backgrounds) = next(walk(background_folder))
     for idx in range(len(backgrounds)):
         render(compress=True, background_image_location=background_folder+backgrounds[idx])
-
-
-

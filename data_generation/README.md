@@ -1,4 +1,5 @@
 # Data Generation
+#### Rapha&euml;l Piccolin
 This code generates training images for camera calibration. 
 By default: a checkerboard pattern
 on a calibration board in a random angle and position, 
@@ -42,14 +43,14 @@ You should set your parameters by modifying the script before running.
 directory.
 
 ### Tips:
-- It is highly recommended to compress images (see command 
+- I recommend compressing images (see command 
 line options).
 - The bash script uses the command line program, so it us 
 useful to get familiar with that first.
 - This may vary by machine, but I found that above a certain 
 threshold of generated images in a batch, the program performs
 poorly. That is why it is necessary to generate in several
-batches, and using a bash script to do so.
+batches, and using a bash script to do so. I used batches of 400 images.
 
 ### Example output:
 ![](data/generated_images/gen_img_test.png?raw=true)
