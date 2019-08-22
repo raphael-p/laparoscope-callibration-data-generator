@@ -7,7 +7,7 @@ import csv
 
 
 def run(n_images=20, system='mac', has_principal=False,
-        background_folder='../data/operating_theatre/', save_folder='../data/generated_images/batch_pred/',
+        background_folder='../data/operating_theatre/', save_folder='../data/generated_images/batch_0/',
         label_folder='../data/labels/',
         compression=True, im_width=1920, im_height=1080):
     """

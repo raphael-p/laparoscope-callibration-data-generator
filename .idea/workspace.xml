@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c485a3f7-8d31-457e-820c-31877b08920c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_10.png" beforeDir="false" afterPath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_11.png" beforeDir="false" afterPath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_11.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_12.png" beforeDir="false" afterPath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_12.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_13.png" beforeDir="false" afterPath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_13.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_14.png" beforeDir="false" afterPath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_14.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_15.png" beforeDir="false" afterPath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_15.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_16.png" beforeDir="false" afterPath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_16.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_17.png" beforeDir="false" afterPath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_17.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_18.png" beforeDir="false" afterPath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_18.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_19.png" beforeDir="false" afterPath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_19.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_20.png" beforeDir="false" afterPath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_20.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_3.png" beforeDir="false" afterPath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_4.png" beforeDir="false" afterPath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_6.png" beforeDir="false" afterPath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_6.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_7.png" beforeDir="false" afterPath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_7.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_8.png" beforeDir="false" afterPath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_8.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_9.png" beforeDir="false" afterPath="$PROJECT_DIR$/data_generation/data/generated_images/batch_0/genim_batch_0_9.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generation/data/generated_images/gen_img_test.png" beforeDir="false" afterPath="$PROJECT_DIR$/data_generation/data/generated_images/gen_img_test.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generation/data/labels/batch_0.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data_generation/data/labels/batch_0.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generation/weiss-datagen/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_generation/weiss-datagen/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generation/weiss-datagen/model_render.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_generation/weiss-datagen/model_render.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data_generation/weiss-datagen/mass_generate.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data_generation/weiss-datagen/command.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-333">
+              <caret column="35" selection-start-column="35" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/data_generation/weiss-datagen/model_render.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="381">
+              <caret line="189" selection-start-line="189" selection-end-line="189" />
+              <folding>
+                <element signature="e#0#27#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data_generation/weiss-datagen/plane.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-211">
+              <caret line="32" selection-start-line="32" selection-end-line="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data_generation/weiss-datagen/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="17" column="36" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>Pillow</find>
+      <find>imageio</find>
+      <find>pydot</find>
+      <find>PyYAML</find>
+      <find>rotate_model</find>
+      <find>background_file</find>
+      <find>background_image</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/data_generation/weiss-datagen/command.py" />
+        <option value="$PROJECT_DIR$/data_generation/README.md" />
+        <option value="$PROJECT_DIR$/data_generation/weiss-datagen/plane.py" />
+        <option value="$PROJECT_DIR$/data_generation/weiss-datagen/model_render.py" />
+        <option value="$PROJECT_DIR$/data_generation/weiss-datagen/mass_generate.sh" />
+        <option value="$PROJECT_DIR$/data_generation/weiss-datagen/main.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="y" value="23" />
+    <option name="width" value="1019" />
+    <option name="height" value="877" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="data" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="data_generation" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="data_generation" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="data_generation" type="462c0819:PsiDirectoryNode" />
+              <item name="weiss-datagen" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.main">
+    <configuration name="mass_generate.sh" type="BashConfigurationType" factoryName="Bash" temporary="true">
+      <module name="data" />
+      <option name="INTERPRETER_OPTIONS" value="bash" />
+      <option name="INTERPRETER_PATH" value="/usr/bin/env" />
+      <option name="PROJECT_INTERPRETER" value="false" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/data_generation/weiss-datagen" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data_generation/weiss-datagen/mass_generate.sh" />
+      <option name="PARAMETERS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="data" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/data_generation/weiss-datagen" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data_generation/weiss-datagen/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="model_render" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="data" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/data_generation/weiss-datagen" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data_generation/weiss-datagen/model_render.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="plane" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="data" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/data_generation/weiss-datagen" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data_generation/weiss-datagen/plane.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+        <item itemvalue="Bash.mass_generate.sh" />
+        <item itemvalue="Python.model_render" />
+        <item itemvalue="Python.plane" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c485a3f7-8d31-457e-820c-31877b08920c" name="Default Changelist" comment="" />
+      <created>1562677708643</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1562677708643</updated>
+    </task>
+    <task id="LOCAL-00001" summary="updates to documentation, added command line support for different image&#10;sizes">
+      <created>1562751856702</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1562751856702</updated>
+    </task>
+    <task id="LOCAL-00002" summary="added compression tool to commit">
+      <created>1562752337154</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1562752337154</updated>
+    </task>
+    <task id="LOCAL-00003" summary="labels of intrinsic and extrinsic matrices now saved">
+      <created>1562775404893</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1562775404894</updated>
+    </task>
+    <task id="LOCAL-00004" summary="minor change">
+      <created>1562775501451</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1562775501451</updated>
+    </task>
+    <task id="LOCAL-00005" summary="added example batch">
+      <created>1562775890619</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1562775890619</updated>
+    </task>
+    <task id="LOCAL-00006" summary="added header to label file">
+      <created>1562776420165</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1562776420165</updated>
+    </task>
+    <task id="LOCAL-00007" summary="modified settings: lower quality and higher compression">
+      <created>1562942793946</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1562942793946</updated>
+    </task>
+    <task id="LOCAL-00008" summary="added requirements list">
+      <created>1565016034264</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1565016034266</updated>
+    </task>
+    <task id="LOCAL-00009" summary="improved layout of documentation">
+      <created>1565270177909</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1565270177909</updated>
+    </task>
+    <task id="LOCAL-00010" summary="added image and additional instructions">
+      <created>1565270869189</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1565270869189</updated>
+    </task>
+    <task id="LOCAL-00011" summary="made background non-fixed, added new backgrounds,&#10;deleted problem backgrounds, saving translation and filename,&#10;camera no longer moves (only board)">
+      <created>1565776054339</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1565776054339</updated>
+    </task>
+    <task id="LOCAL-00012" summary="fixed problem with how translation values were stored, deleted comments">
+      <created>1565776548312</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1565776548313</updated>
+    </task>
+    <task id="LOCAL-00013" summary="undid mistake in previous commit">
+      <created>1565776693999</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1565776693999</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24947146" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4982382" visible="true" weight="0.38433734" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49964765" weight="0.25060242" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5017618" side_tool="true" weight="0.29156625" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4982382" weight="0.24698795" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32891566" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="updates to documentation, added command line support for different image&#10;sizes" />
+    <MESSAGE value="added compression tool to commit" />
+    <MESSAGE value="labels of intrinsic and extrinsic matrices now saved" />
+    <MESSAGE value="minor change" />
+    <MESSAGE value="added example batch" />
+    <MESSAGE value="added header to label file" />
+    <MESSAGE value="modified settings: lower quality and higher compression" />
+    <MESSAGE value="added requirements list" />
+    <MESSAGE value="improved layout of documentation" />
+    <MESSAGE value="added image and additional instructions" />
+    <MESSAGE value="made background non-fixed, added new backgrounds,&#10;deleted problem backgrounds, saving translation and filename,&#10;camera no longer moves (only board)" />
+    <MESSAGE value="fixed problem with how translation values were stored, deleted comments" />
+    <MESSAGE value="undid mistake in previous commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="undid mistake in previous commit" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/data_generation/data/generated_images/batch_1/genim_batch_1_2.png" />
+    <entry file="file://$PROJECT_DIR$/data_generation/data/generated_images/batch_1/genim_batch_1_4.png" />
+    <entry file="file://$PROJECT_DIR$/data_generation/data/generated_images/batch_1/genim_batch_1_6.png" />
+    <entry file="file://$PROJECT_DIR$/data_generation/data/generated_images/batch_1/genim_batch_1_12.png" />
+    <entry file="file://$PROJECT_DIR$/data_generation/data/generated_images/batch_1/genim_batch_1_1.png" />
+    <entry file="file://$PROJECT_DIR$/data_generation/ACKNOWLEDGEMENTS.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_generation/data/generated_images/batch_pred/genim_batch_pred_435.png" />
+    <entry file="file://$PROJECT_DIR$/data_generation/data/generated_images/gen_img_test.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_generation/data/generated_images/labels/batch_pred.csv">
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+      <provider selected="true" editor-type-id="csv-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_generation/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="-294">
+            <caret line="7" selection-start-line="7" selection-end-line="7" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_generation/weiss-datagen/command.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-333">
+          <caret column="35" selection-start-column="35" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_generation/weiss-datagen/plane.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-211">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_generation/weiss-datagen/mass_generate.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_generation/weiss-datagen/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="36" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_generation/weiss-datagen/model_render.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="189" selection-start-line="189" selection-end-line="189" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

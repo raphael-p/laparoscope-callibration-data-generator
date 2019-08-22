@@ -42,6 +42,16 @@ You should set your parameters by modifying the script before running.
 - The background images can be changed by modifying the contents of the operating_theatre
 directory.
 
+### Testing:
+Unit testing can be run with this terminal command.
+```bash
+pytest
+```
+To test data, simply run `main.py`. Its default parameters are set to generate 
+a small image batch called batch_0. You can also run `model_render` to test
+individual image generation.
+
+
 ### Tips:
 - I recommend compressing images (see command 
 line options).
