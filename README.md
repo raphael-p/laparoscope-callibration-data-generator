@@ -15,32 +15,32 @@ See `REQUIREMENTS.txt` for a list of dependencies.
     
 ### Instructions: 
 - To generate a single image, run
-```bash
-python model_render.py
-```
-The parameters can be set by modifying the script directly. 
-However, this is not ideal and I recommend using the command
-line app instead (see next bullet point).
+    ```bash
+    python model_render.py
+    ```
+    The parameters can be set by modifying the script directly. 
+    However, this is not ideal and I recommend using the command
+    line app instead (see next bullet point).
 - To generate a batch of images, run 
-```bash
-python main.py 
-```
-Again, it is preferable to use the command line app to set the 
-parameters.
-
-To run the command line app, enter the following bash command, 
-```bash
-python command.py 
-```
-with flags -h or --help for information on the parameters.
+    ```bash
+    python main.py 
+    ```
+    Again, it is preferable to use the command line app to set the 
+    parameters.
+    
+    To run the command line app, enter the following bash command, 
+    ```bash
+    python command.py 
+    ```
+    with flags -h or --help for information on the parameters.
 - To generate multiple batches, run the bash script,
- ```bash
- bash mass_generate.sh
- ```
-You should set your parameters by modifying the script before running.
-- The pattern of the calibration board can be changed by replacing checkerboard-3mm.png
-- The background images can be changed by modifying the contents of the operating_theatre
-directory.
+     ```bash
+     bash mass_generate.sh
+     ```
+    You should set your parameters by modifying the script before running.
+- The pattern of the calibration board can be changed by replacing `checkerboard-3mm.png`
+- The background images can be changed by modifying the contents of the `./data/operating_theatre`
+    directory.
 
 ### Testing:
 Unit testing can be run with this terminal command.
