@@ -1,6 +1,6 @@
 graphviz==0.11.1
 numpy==1.16.4
-opencv-contrib-python==4.1.0.25
+opencv-contrib-python==4.1.1.26
 py==1.8.0
 pydot==1.4.1
 PySide2==5.11.0
